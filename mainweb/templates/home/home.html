@@ -1,0 +1,15 @@
+<!-- home.html -->
+{% load socialaccount %}		
+{% providers_media_js %}
+
+<h1>소셜 로그인 확인</h1>
+
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.username }} !</p>
+<br>
+<a href = "/sociallogin/logout">logout</a><br>
+
+{% else %}
+<a href=" {% provider_login_url 'google' %}">구글 로그인</a><br>
+
+{% endif %}
