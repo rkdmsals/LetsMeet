@@ -56,6 +56,8 @@ INSTALLED_APPS = [
 
     #startapps
     'users',
+    'home',
+    'sociallogin',
 
 ]
 
@@ -106,6 +108,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 # 'default': {
 #          'ENGINE': 'djongo',
 #          'NAME': 'db-name',
