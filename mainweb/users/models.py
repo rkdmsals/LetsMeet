@@ -1,14 +1,9 @@
 from django.db import models
-
-# Create your models here.
+from django.conf import settings
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_pk = models.IntegerField(blank=True)
-    email = models.EmailField(max_length=500, blank=True)
-    mygit = models.CharField(max_length=50, blank=True)
-    nickname = models.CharField(max_length=200, blank=True)
-    myInfo = models.CharField(max_length=150, blank=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # User모델과 Profile을 1:1로 연결
+    description = models.TextField(blank=True)      # 자기소개 칸 만들까?말까?
+    nickname = models.CharField(max_length=40, blank=True)
