@@ -78,9 +78,14 @@ INSTALLED_APPS = [
 
     #organizations
     #'organizations',
+
+    # groupadmin 에서 users 지정 가능
+    'groupadmin_users',
 ]
-
-
+#organizations
+# ORGS_SLUGFIELD = 'django_extensions.db.fields.AutoSlugField'
+# INVITATION_BACKEND = 'users.backends.MyInvitationBackend'
+# REGISTRATION_BACKEND = 'users.backends.MyRegistrationBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
