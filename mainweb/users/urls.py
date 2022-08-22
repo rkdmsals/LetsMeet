@@ -10,6 +10,6 @@ urlpatterns = [
 
     # 프로필
     # user_pk는 DB상의 인덱스
-    path('profile/<int:user_pk>/', ProfileView.as_view(), name='profile'),
+    path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
     path('profile/', views.profile_update, name='profile_update')  
 ]
