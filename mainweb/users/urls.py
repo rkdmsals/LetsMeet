@@ -9,6 +9,5 @@ urlpatterns = [
 
     # 프로필
     # user_id는 DB상의 인덱스
-    path('profile/base/<int:user_id>/', profile_views.profile_base, name='profile_base'),
-    path('profile/comment/<int:user_id>/', profile_views.ProfileCommentListView.as_view(), name='profile_comment'),
+    path('profile/<int:user_id>/', profile_views.ProfileCommentListView.as_view(), name='profile'),
 ]
