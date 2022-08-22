@@ -8,5 +8,6 @@ class ProfileView(DetailView):
     model = User
     template_name = 'users/profile.html'
 
+
 def profile_update(request):
     return render(request, 'users/profile_update.html')
