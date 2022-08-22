@@ -9,7 +9,7 @@ urlpatterns = [
 	# 계정 (... 생략 ...)
 
     # 프로필
-    # user_pk는 DB상의 인덱스
+    # pk는 DB상의 인덱스
     path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
-    path('profile/', views.profile_update, name='profile_update')  
+    path('profile/update/', views.profile_update, name='profile_update')  
 ]

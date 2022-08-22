@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load bootstrap 4 %}
 {% block container %}
 
 <div class="container">
@@ -22,3 +21,5 @@
     {% if user == people %}
     <div>
         <a href="{% url 'accounts:profile_update' %}">프로필 수정</a>
+    {% endif %}
+{% endblock %}
