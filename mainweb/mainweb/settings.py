@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -122,28 +122,14 @@ WSGI_APPLICATION = 'mainweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-
-# MongoDB로 수정 필요!!!
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+      'default': {
+          'ENGINE': 'djongo',
+          'NAME': 'MongoDemo',
+          'HOST': '127.0.0.1',
+          'PORT': '27017',
+      }
 }
-
-# 'default': {
-#          'ENGINE': 'djongo',
-#          'NAME': 'db-name',
-#      }
-
-# 'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'your-db-name',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': 'mongodb+srv://<username>:<password>@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority'
-#             }  
-#         }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
