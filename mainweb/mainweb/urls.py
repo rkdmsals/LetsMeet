@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from users import views as accounts_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +24,5 @@ urlpatterns = [
     path('sociallogin/', include('allauth.urls')),
     path('sociallogin/', include('sociallogin.urls')),
     #path('sociallogin/', include('dj_rest_auth.urls')),
+    path('<str:username>/', accounts_views.people, name="people"),
 ]
