@@ -74,6 +74,9 @@ INSTALLED_APPS = [
     'users',
     'home',
     'sociallogin',
+
+    #organizations
+    'organizations',
 ]
 
 
