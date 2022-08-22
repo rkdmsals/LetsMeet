@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 class ProfileView(DetailView):
     context_object_name = 'profile_user' # model로 지정해준 User모델에 대한 객체와 로그인한 사용자랑 명칭이 겹쳐버리기 때문에 이를 지정해줌.
     model = User
-    template_name = 'users/profile.html'
+    template_name = 'users/people.html'
 
 
 def profile_update(request):
