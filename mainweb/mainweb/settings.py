@@ -12,9 +12,19 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import json #보안!!
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+#시크릿 키는 따로 빼놓기!!
+ROOT_DIR = os.path.dirname(BASE_DIR)
+SECRET_BASE_FILE = os.path.join(BASE_DIR, 'secrets.json')
+
+secrets = json.loads(open(SECRET_BASE_FILE).read())
+for key, value in secrets.items():
+    setattr(sys.modules[__name__], key, value)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,15 +36,17 @@ SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost', '43.200.104.133']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     #drf
-    'rest_framework',
-    
+    # 'rest_framework',
+    # 'rest_framework.authtoken', #https://krakensystems.co/blog/2020/custom-users-using-django-rest-framework
+    # 'rest_framework_simplejwt.token_blacklist', #로그인할때 블랙리스트 관리 -> 토큰 관련
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +54,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',   ##추가
+
+    #dj-rest-auth
+    #'dj-rest-auth',
+    #'aj-rest-auth.registration',
 
     #allauth
     'allauth',
@@ -56,8 +72,11 @@ INSTALLED_APPS = [
 
     #startapps
     'users',
-
+    'home',
+    'sociallogin',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,33 +111,23 @@ TEMPLATES = [
 ]
 
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+
 WSGI_APPLICATION = 'mainweb.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-
-# MongoDB로 수정 필요!!!
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# 'default': {
-#          'ENGINE': 'djongo',
-#          'NAME': 'db-name',
-#      }
-
-# 'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'your-db-name',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': 'mongodb+srv://<username>:<password>@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority'
-#             }  
-#         }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -178,4 +187,44 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
+
+#
+#AUTH_USER_MODEL='sociallogin.User'
+
 LOGIN_REDIRECT_URL = '/'	### 오류가 나면 홈으로 돌아와라
+LOGOUT_REDIRECT_URL = '/'
+
+
+# Additional configuration settings
+# SOCIALACCOUNT_QUERY_EMAIL = True
+# ACCOUNT_LOGOUT_ON_GET= True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_REQUIRED = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+#remove handshake page 
+SOCIALACCOUNT_LOGIN_ON_GET=True
+
+
+#JWT 환경 세팅
+# REST_USE_JWT = True
+
+# from datetime import timedelta
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+#     'ROTATE_REFRESH_TOKENS': False,
+#     'BLACKLIST_AFTER_ROTATION': True,
+# }

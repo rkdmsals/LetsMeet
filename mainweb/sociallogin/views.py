@@ -8,3 +8,6 @@ def sociallogin(request):
 def logout_view(request):
     logout(request)
     return render(request, 'sociallogin/logout.html')
+
+# def register_view(request):
+#     return 
