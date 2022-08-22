@@ -35,6 +35,7 @@ SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = True # 추가
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost', '43.200.104.133']
 
@@ -160,6 +161,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True # 추가
+
 USE_TZ = True
 
 
@@ -204,7 +207,7 @@ LOGOUT_REDIRECT_URL = '/'
 # ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_REQUIRED = True
 
-SOCIALACCOUNT_PROVIDERS = {
+SOCIALACCOUNT_PROVIDERS= {
     'google': {
         'SCOPE': [
             'profile',
