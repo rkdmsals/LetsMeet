@@ -123,12 +123,10 @@ WSGI_APPLICATION = 'mainweb.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-      'default': {
-          'ENGINE': 'djongo',
-          'NAME': 'MongoDemo',
-          'HOST': '127.0.0.1',
-          'PORT': '27017',
-      }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
@@ -203,7 +201,7 @@ LOGOUT_REDIRECT_URL = '/'
 # ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_REQUIRED = True
 
-SOCIALACCOUNT_PROVIDERS = {
+SOCIALACCOUNT_PROVIDERS= {
     'google': {
         'SCOPE': [
             'profile',
