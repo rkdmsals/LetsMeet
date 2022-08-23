@@ -1,0 +1,12 @@
+<h1>Moim List</h1>
+{% if moim_list %}
+<ul>
+    {% for moim in moim_list %}
+    <li>
+        <a href="{{ moim.get_absolute_url }}">{{ moim.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no Moim</p>
+{% endif %}
