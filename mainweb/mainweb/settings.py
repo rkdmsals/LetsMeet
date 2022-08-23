@@ -75,12 +75,13 @@ INSTALLED_APPS = [
     'users',
     'home',
     'sociallogin',
+    'organizations',
 
-    #organizations
-    #'organizations',
+    # organizations
+    # 'organizations',
 
     # groupadmin 에서 users 지정 가능
-    'groupadmin_users',
+    # 'groupadmin_users',
 ]
 #organizations
 # ORGS_SLUGFIELD = 'django_extensions.db.fields.AutoSlugField'
@@ -197,7 +198,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
+SITE_ID = 2
 
 #
 #AUTH_USER_MODEL='sociallogin.User'
