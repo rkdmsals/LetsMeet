@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from django.contrib import auth
+from django.contrib.auth.models import User
+
 
 from .models import Moim
 
@@ -13,8 +14,12 @@ class MoimListView(generic.ListView):
     def get_context_data(self, **kwargs):
         """ get_context_data let you fill the template context """
         context = super(MoimListView, self).get_context_data(**kwargs)
-        context['users_list'] = Moim.objects.all() # 수정 .. 필요
+        #context['users_list'] = User.objects.all() # 수정 .. 필요
+        context['users_list'] = Moim.join_users
         return context
+    
+    # def user_list_view(request, self):
+    #     return render(request, "organizations/moim_list.html", {'join_users': join_users})
 
 
 

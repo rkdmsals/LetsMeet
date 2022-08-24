@@ -1,7 +1,7 @@
 <h1>my Moim List</h1>
 <ul>
     {% for moim in moim_list %}
-    {% if user in moim.join_users %}
+    {% if user in moim.users_list %}
     <li>
         <a href="{{ moim.get_absolute_url }}">{{ moim.name }}</a>
     </li>

@@ -2,16 +2,22 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.template.defaultfilters import slugify
+from django.contrib.auth import get_user_model, get_user
+from django.contrib.auth.models import User
+#from django_extensions.db.fields import AutoSlugField
 
 # Create your models here.
+
+def my_slugify_function(content):
+    return content.replace('_', '-').lower()
 
 class Moim(models.Model):
     name = models.CharField(max_length=100, unique=True)
     detail = models.TextField(null=True)
 
-    join_users = models.ManyToManyField('auth.User', verbose_name=u'참여자', blank=True, related_name='moim_users')
+    join_users = models.ManyToManyField(User, blank=True, related_name='moim_users')
     # 모임을 만든 사람이 모임장이 될 수 있게 설정
-    admin_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True) #모임장 삭제되면 모임 삭제
+    admin_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='moim_admin_user') #모임장 삭제되면 모임 삭제
     #admin_user = models.OneToOneField('auth.User', verbose_name=u'모임장', null=False) 
 
     created_date = models.DateTimeField(default=timezone.now)
@@ -19,6 +25,7 @@ class Moim(models.Model):
     end_date = models.DateField(default=timezone.now)
 
     slug = models.CharField(max_length=100, unique=True, null=True, blank=True)
+    # slug = AutoSlugField(populate_from='name', slugify_function=my_slugify_function, null=True)
 
     def __str__(self):
         return self.name
