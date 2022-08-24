@@ -11,7 +11,7 @@ class Moim(models.Model):
 
     join_users = models.ManyToManyField('auth.User', verbose_name=u'참여자', blank=True, related_name='moim_users')
     # 모임을 만든 사람이 모임장이 될 수 있게 설정
-    admin_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True) #모임장 삭제되면 모임 삭제ㄴ
+    admin_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True) #모임장 삭제되면 모임 삭제
     #admin_user = models.OneToOneField('auth.User', verbose_name=u'모임장', null=False) 
 
     created_date = models.DateTimeField(default=timezone.now)

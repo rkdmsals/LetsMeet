@@ -11,6 +11,8 @@
 <br>
 <a href="/users/profile">profile</a><br>
 <a href = "/sociallogin/logout">logout</a><br>
+<a href="{% url 'organizations:moim-create' %}">Create Moim</a>
+<a href="{% url 'organizations:moim-list' %}">Moim List</a>
 
 {% else %}
 <a href=" {% provider_login_url 'google' %}">구글 로그인</a><br>
