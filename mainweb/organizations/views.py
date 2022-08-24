@@ -10,12 +10,18 @@ from .models import Moim
 
 class MoimListView(generic.ListView):
     model = Moim
+    # context_object_name = 'moim_list'         # -> TypeError: 'Manager' object is not iterable
+
+
+    # def get_queryset(self): # 필요한가...?
+    #   return Moim.objects
 
     def get_context_data(self, **kwargs):
         """ get_context_data let you fill the template context """
         context = super(MoimListView, self).get_context_data(**kwargs)
-        #context['users_list'] = User.objects.all() # 수정 .. 필요
-        context['users_list'] = Moim.join_users
+        # context['users_list'] = User.objects.all() # 수정 .. 필요
+        moim = self.object_list 
+        context['users_list'] = self.get_context_object_name(moim)
         return context
     
     # def user_list_view(request, self):

@@ -30,8 +30,11 @@ class Moim(models.Model):
     def __str__(self):
         return self.name
 
-    # def num_users(self):
-    #     """모임에 참여하는 인원수를 return --> 지금은 유저 이름만 리턴된다."""
+    # def users_list(self):
+    #     """모임의 참여자들 리스트 리턴. -> 그냥 moim_users는 안됨..."""
+    #     # moim = Moim.objects.all()
+    #     moim = Moim.objects.all()
+    #     list11 = moim.
     #     return self.join_users
 
     # @models.permalink
