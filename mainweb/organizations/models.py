@@ -17,6 +17,8 @@ class Moim(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
 
+    slug = models.CharField(max_length=255, unique=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -24,7 +26,9 @@ class Moim(models.Model):
     #     """모임에 참여하는 인원수를 return --> 지금은 유저 이름만 리턴된다."""
     #     return self.join_users
 
+    # @models.permalink
     def get_absolute_url(self):
         """Returns the url to access a particular instance of the Moim model"""
-        return reverse('moim-detail-view', args=[str(self.name)])
-        # return reverse('', kwargs={"slug": self.slug})
+        #return reverse('moim-detail-view', args=[str(self.name)])
+        #return reverse('', kwargs={"pk": self.id})
+        return ('moim-detail-view', (), {'slug': self.slug})
