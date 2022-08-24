@@ -1,6 +1,23 @@
-<h1>Moim List</h1>
+<h1>my Moim List</h1>
 <ul>
+    {% for moim in moim_list %}
+    {% if user in moim.join_users %}
     <li>
         <a href="{{ moim.get_absolute_url }}">{{ moim.name }}</a>
     </li>
+    
+    {% else %}
+    <p>there is no moim</p>
+    {% endif %}
+    {% endfor %}
 </ul>
+
+<br>
+<br>
+<h2>Total Moim List</h2>
+<ul>
+    {% for moim in moim_list %}
+    <li>
+        <a href="{{ moim.get_absolute_url }}">{{ moim.name }}</a>
+    </li>
+    {% endfor %}

@@ -32,7 +32,9 @@ class Moim(models.Model):
         """Returns the url to access a particular instance of the Moim model"""
         #return reverse('moim-detail-view', args=[str(self.name)])
         #return reverse('', kwargs={"pk": self.id})
-        return ('moim-detail-view', (), {'slug': self.slug})
+        #return ('moim-detail-view', (), {'slug': self.slug})
+        return reverse('organizations:moim-detail-view', kwargs={'slug': self.slug})
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
