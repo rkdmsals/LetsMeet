@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'home',
     'sociallogin',
     'organizations',
+    'calendars',
 
     # organizations
     # 'organizations',
