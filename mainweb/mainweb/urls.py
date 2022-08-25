@@ -23,7 +23,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('sociallogin/', include('allauth.urls')),
     path('sociallogin/', include('sociallogin.urls')),
-    #path('sociallogin/', include('dj_rest_auth.urls')),
     path('users/', include('users.urls')),
     path('organizations/', include('organizations.urls')),
 ]
