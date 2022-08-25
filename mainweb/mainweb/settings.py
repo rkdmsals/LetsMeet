@@ -35,15 +35,25 @@ def get_secret(setting, secrets=secrets):
 
 SECRET_KEY = get_secret("SECRET_KEY")
 
+def get_secret(setting):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd'
+#SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd'
+SECRET_KEY = get_secret("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = True # 추가
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost', '43.200.104.133']
 
@@ -83,9 +93,18 @@ INSTALLED_APPS = [
     'users',
     'home',
     'sociallogin',
+    'organizations',
+
+    # organizations
+    # 'organizations',
+
+    # groupadmin 에서 users 지정 가능
+    #'groupadmin_users',
 ]
-
-
+#organizations
+# ORGS_SLUGFIELD = 'django_extensions.db.fields.AutoSlugField'
+# INVITATION_BACKEND = 'users.backends.MyInvitationBackend'
+# REGISTRATION_BACKEND = 'users.backends.MyRegistrationBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -166,6 +185,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True # 추가
+
 USE_TZ = True
 
 
@@ -195,9 +216,9 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
+SITE_ID = 2
 
-#
+# AUTH_USER_MODEL = 'users.User'
 #AUTH_USER_MODEL='sociallogin.User'
 
 LOGIN_REDIRECT_URL = '/'	### 오류가 나면 홈으로 돌아와라
@@ -210,7 +231,7 @@ LOGOUT_REDIRECT_URL = '/'
 # ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_REQUIRED = True
 
-SOCIALACCOUNT_PROVIDERS = {
+SOCIALACCOUNT_PROVIDERS= {
     'google': {
         'SCOPE': [
             'profile',
