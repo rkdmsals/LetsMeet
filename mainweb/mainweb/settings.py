@@ -80,7 +80,7 @@ INSTALLED_APPS = [
     #'organizations',
 
     # groupadmin 에서 users 지정 가능
-    'groupadmin_users',
+    #'groupadmin_users',
 ]
 #organizations
 # ORGS_SLUGFIELD = 'django_extensions.db.fields.AutoSlugField'
@@ -199,7 +199,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-#
+AUTH_USER_MODEL = 'users.User'
 #AUTH_USER_MODEL='sociallogin.User'
 
 LOGIN_REDIRECT_URL = '/'	### 오류가 나면 홈으로 돌아와라

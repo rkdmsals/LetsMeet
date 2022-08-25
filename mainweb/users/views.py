@@ -1,31 +1,34 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms import UserForm, ProfileForm
+from django.shortcuts import render
+from .forms import CustomUserChangeForm
 from django.contrib.auth.models import User
-from django.views.generic.detail import DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+
+def redirect_to_user_profile(request):
+    if request.user.is_authenticated:
+        print(request.user.pk)
+        redirect_url = f"{request.user.pk}/"
+        return HttpResponseRedirect(redirect_to=redirect_url)
 
 # Create your views here.
-class ProfileView(DetailView):
-    context_object_name = 'profile_user' 
-    model = User
-    template_name = 'users/profile.html' #
+@login_required
+def profile_view(request):
+    if request.method == 'GET':
+        return render(request, 'users/profile.html')
 
 
-class ProfileUpdateView(request):
-    def get(self, request):
-        user = get_object_or_404(User, pk=request.user.pk)
-        user_form = UserForm(initial={
-            'email': user.email,
-        })
+@login_required
+def profile_update_view(request):
+    if request.method == 'POST':
+        user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
 
-        if hasattr(user, 'profile'):
-            profile=user.profile
-            profile_form=ProfileForm(initial={
-                'nickname':profile.nickname,
-                'photo':profile.photo,
-                'intro':profile.intro,
-                'phone':profile.phone
-            })
-        else:
-            profile_form=ProfileForm()
-        return render(request, 'user/profile_update.html', {"user_form":user_form, "profile_form":profile_form})
+        if user_change_form.is_valid():
+            user_change_form.save()
+            messages.success(request, '회원정보가 수정되었습니다.')
+            return render(request, 'users/profile.html')
+    else:
+        user_change_form = CustomUserChangeForm(instance = request.user)
+
+        return render(request, 'users/profile_update.html', {'user_change_form':user_change_form})

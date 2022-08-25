@@ -1,15 +1,16 @@
 from django import forms
-from .models import Profile
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from .models import User
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['email']
+class CustomUserChangeForm(UserChangeForm):
+    password = None        
+    name = forms.CharField(label='이름', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'maxlength':'8',}), 
+    )
+    nickname = forms.CharField(label='닉네임', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'maxlength':'8',}), 
+    )           
 
-class ProfileForm(forms.ModelForm):
-    nickname = forms.CharField(required=False)
-    description = forms.CharField(required=False)
     class Meta:
-        model = Profile
-        fields = ['name', 'email', 'nickname', 'description',]
+        model = User()
+        fields = ['name', 'nickname',]
