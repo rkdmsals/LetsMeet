@@ -85,7 +85,6 @@ INSTALLED_APPS = [
     'home',
     'sociallogin',
     'organizations',
-    'calendars',
 
     # organizations
     # 'organizations',
@@ -210,7 +209,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 2
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
 #AUTH_USER_MODEL='sociallogin.User'
 
 LOGIN_REDIRECT_URL = '/'	### 오류가 나면 홈으로 돌아와라
