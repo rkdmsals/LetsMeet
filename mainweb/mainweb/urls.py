@@ -26,5 +26,4 @@ urlpatterns = [
     #path('sociallogin/', include('dj_rest_auth.urls')),
     path('users/', include('users.urls')),
     path('organizations/', include('organizations.urls')),
-    path('calendars/', include('calendars.urls')),
 ]
