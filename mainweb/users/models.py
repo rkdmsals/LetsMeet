@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
 class UserManager(BaseUserManager):
@@ -10,7 +10,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             name = name,
             nickname = nickname,
-            email = self.normalize_email(email),
+            email = email
         )
 
         user.set_password(password)
@@ -18,14 +18,13 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, name, nickname, email, password=None):
-        user = self.create_user(
-            name = name,
-            nickname = nickname,
-            email = self.normalize_email(email),
-            password = password,
+        user = self.create_user(name, nickname, email, password)
 
-        )
+        user.is_superuser = True
+        user.is_staff = True
         user.is_admin = True
+        user.level = 0
+
         user.save(using=self._db)
         return user
 
@@ -33,17 +32,20 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     name = models.CharField(max_length=100)
     nickname = models.CharField(max_length=100)
-    email = models.EmailField(max_length=255,unique=True,)
+    email = models.EmailField(max_length=255,unique=True)
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'name'
-    REQUIRED_FIELDS = ['nickname','email']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name','nickname']
 
     def __str__(self):
-        return self.name
+        return self.email
 
     def has_perm(self, perm, obj=None):
         return True
