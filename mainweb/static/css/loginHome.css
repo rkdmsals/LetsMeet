@@ -188,12 +188,5 @@ body{
     
     font-size: 20px;
     color:#000000;
-    
 
-
-    /* Inside auto layout */
-/* 
-    flex: none;
-    order: 2;
-    flex-grow: 0; */ 
 }

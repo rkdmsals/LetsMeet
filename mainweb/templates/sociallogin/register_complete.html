@@ -1,36 +1,25 @@
 
 <!DOCTYPE html>
 <header>
-    
     <meta charset="UTF-8">
-    <link href="./register_complete.css" rel="stylesheet" />
-    <link href="../share/btn.css" rel="stylesheet" />
+    <link href="/../../static/css/register_complete.css" rel="stylesheet" />
+    <link href="/../../static/css/btn.css" rel="stylesheet" />
     <style>
         
     </style>
 </header>
 
-<head>
-    <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
-  </head>
-
 <body >
     <div class="box">
-        <img src="../../static/image/LetsMeet_Logo.png">
+        <img src="/../../static/image/LetsMeet_Logo.png">
         <div class="textbox1">회원가입을 축하합니다!</div>
         <div class="textbox2">반갑습니다!<br/>로그인 후 우지만을 통해 약속 시간을 쉽게 정해보세요.</div>
-        <!-- <py-script>
-            slack.py
-        </py-script> -->
-        <!-- <script type="text/python">
-            from slack import post_message
-            myToken = "xoxb-4018156897472-4018178014048-Sa13o0yf7f6OpA6rK6zVFvCy"
-
-            post_message(myToken, "#admin", "test.")
-        </script> -->
         <button class="btn1">로그인</button>
+        <button class="btn1"><a href="{% url 'sociallogin:email' %}" >찰칵!!</a></button>
     </div>
 </body>
+
+<button class="btn1"><a href="{% url 'sociallogin:email' %}" >찰칵!!</a></button>
 
 
 </html>

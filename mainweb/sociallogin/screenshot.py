@@ -34,8 +34,8 @@ def get_service():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
+                '../credentials.json', SCOPES)
+            creds = flow.run_local_server(port=8001)
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
@@ -122,5 +122,5 @@ img.save(saveas)
 if __name__ == "__main__":
     service = get_service()
     user_id = 'me'
-    msg = create_message_with_attachment('ayla170113@gmail.com', 'ayla010327@gmail.com', '사진이 보내지려나...','This is the message body', saveas)
+    msg = create_message_with_attachment('lucykorea@gmail.com', 'lucykorea@gmail.com', '현장미션 완료!!','This is the message body', saveas)
     send_message(service, user_id, msg)
