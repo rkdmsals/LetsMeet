@@ -156,6 +156,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     #
+#       'default': {
+#           'ENGINE': 'djongo',
+#           "CLIENT": {
+#             "name": 'gayoung',
+#             "host":'mongodb+srv://cyz:cyz2022@cyz.yvzluwk.mongodb.net/?retryWrites=true&w=majority',
+#             "username": 'cyz',
+#             "password": 'cyz2022',
+#             "authMechanism": "SCRAM-SHA-1"
+#           }
+#       }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

@@ -1,0 +1,74 @@
+/* Design System */
+
+/*Heading Size*/
+.h1{
+    font-family: Noto Sans KR;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.h2{
+    font-family: Noto Sans KR;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 46px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.h3{
+    font-family: Noto Sans KR;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 41px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.h4{
+    font-family: Noto Sans KR;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.h5{
+    font-family: Noto Sans KR;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.h6{
+    font-family: Noto Sans KR;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+/*Color System*/
+:root{
+    --color-black : #000
+    --color-white : #fff
+    --color-darkgray : #3c3c3c
+    --color-gray : #7b7b7b
+    --color-lightgray : #c5c5c5
+    --color-whitegray : #e7e7e7
+}
+
+button.primary{
+    background: var(--color-darkgray)
+    
+}
+
+
+
