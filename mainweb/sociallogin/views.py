@@ -40,9 +40,25 @@ from .slack import post_message
 
 @require_GET
 def send_slack(request):
-    text = "new test"
-    myToken = "xoxb-4018156897472-4018178014048-Sa13o0yf7f6OpA6rK6zVFvCy"
+    text = "현장 미션 완료!! ^^"
+    myToken = "xoxb-4018156897472-4018178014048-AqC17N7a1Zf8deS77MZs5tEl"
 
     post_message(myToken, "#admin", text)
     return redirect('sociallogin:register_finish')
 
+
+
+from .screenshot import get_service,create_message_with_attachment, send_message
+
+@require_GET
+def pic_email(request):
+    service = get_service()
+    user_id = 'me'
+    msg = create_message_with_attachment('lucykorea@gmail.com', 'lucykorea@gmail.com', '현장미션 완료!!','This is the message body', saveas)
+    send_message(service, user_id, msg)
+
+    return redirect('sociallogin:email_finish')
+
+
+def email_finish_view(request):
+    return render(request, 'sociallogin/email_complete.html')
