@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<header>
+    
+    <meta charset="UTF-8">
+    <link href="./register_complete.css" rel="stylesheet" />
+    <link href="../share/btn.css" rel="stylesheet" />
+    <style>
+        
+    </style>
+</header>
+
+<body >
+    <div class="box">
+        <img src="../../static/image/LetsMeet_Logo.png">
+        <div class="textbox1">회원가입을 축하합니다!</div>
+        <div class="textbox2">반갑습니다!<br/>로그인 후 우지만을 통해 약속 시간을 쉽게 정해보세요.</div>
+        <?PHP
+        echo shell_exec("python slack.py");
+        ?>
+        <button class="btn1">로그인</button>
+    </div>
+</body>
+
+
+</html>

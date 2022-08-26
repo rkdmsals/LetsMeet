@@ -9,5 +9,8 @@ def logout_view(request):
     logout(request)
     return render(request, 'sociallogin/logout.html')
 
-# def register_view(request):
-#     return 
+def register_view(request):
+    return render(request, 'sociallogin/register1.html')
+
+def register_finish_view(request):
+    return render(request, 'sociallogin/register_complete.html')

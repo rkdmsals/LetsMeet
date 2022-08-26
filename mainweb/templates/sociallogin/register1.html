@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<header>
+    <meta charset="UTF-8">
+    <link href="../home/loginHome.css" rel="stylesheet" />
+    <link href="../share/btn.css" rel="stylesheet" />
+    <style>
+        .loginBox form {
+            width: auto;
+        }
+    </style>
+</header>
+
+<body >
+    <div class="box">
+        <img src="../../static/image/LetsMeet_Logo.png">
+        <div class="b_textBox">
+            <div class="b_text1">회원가입</div>
+        </div>
+        <div class="loginBox">
+            <div class="idpw">ID *</div>
+            <form>
+                <input type="text" name="id" class="input" />
+            </form><br />
+            <div class="idpw">E-mail</div>
+            <form>
+                <input type="text" name="id" class="input" />
+            </form><br />
+            <div class="idpw">PASSWORD *</div>
+            <form>
+                <input type="text" name="pw" class="input" />
+            </form><br />
+            <div class="idpw">PASSWORD(Again) *</div>
+            <form>
+                <input type="text" name="pw" class="input" />
+            </form><br />
+            <br><br>
+            <button class="btn1"><a href="{% url 'sociallogin:register_finish' %}" >회원가입</a></button>
+
+        </div>
+    </div>
+</body>
+
+
+</html>

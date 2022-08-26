@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://mail.google.com/']
@@ -29,7 +29,7 @@ def get_service():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                os.path.join(BASE_DIR, 'static/client_secret.json'), SCOPES)
+                'client_secret.json', SCOPES)
             creds = flow.run_local_server(port=8001)
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
