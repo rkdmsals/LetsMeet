@@ -77,3 +77,7 @@ def sendingMessage(msgto,subject,message):
     user_id = 'me'
     msg = create_message_with_attachment('<email-from>', '<email-to>', '<subject>','<message>')
     send_message(service, user_id, msg)
+
+
+if __name__ == '__main__':
+    get_service()
