@@ -1,0 +1,10 @@
+{% load static %}
+
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.name }} !</p>
+<br>
+<a href = "/sociallogin/logout">logout</a><br>
+
+{% else %}
+<a href=" {% provider_login_url 'google' %}">구글 로그인</a><br>
+{% endif %}

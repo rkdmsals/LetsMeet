@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+html{
+    height: 100%;
+
+}
+
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    background: #ECF3F7;
+
+    /* ECF3F7 */
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+
+
+    position: relative;
+    margin: 0 auto;
+    
+
+    width: 649px;
+    height: 961px;
+    /* left: 50%;
+    top: 50%; */
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+
+.box img {
+    /* Auto layout */
+    top: 50px;
+    left: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 0px;
+    gap: 10px;
+
+    width: 118px;
+    height: 90px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.b_textBox {
+    top: 199px;
+    left: 50px;
+}
+
+.b_text1 {
+    width: 398px;
+    height: 52px;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: bold;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.b_text2 {
+    /* 서비스 이용을 위해 로그인해주세요. */
+
+
+    width: 356px;
+    height: 35px;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    background-color: #ffffff;
+
+    width: auto;
+    height: auto;
+    margin-top: 60px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.idpw {
+    width: 100%;
+    height: 30px;
+    margin-left: 5px;
+
+    font-family: 'Noto Sans KR';
+    font-style: bold;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+
+    width: 629px;
+    height: 50px;
+
+    /* Sub whitegray */
+
+    background: #E7E7E7;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+
+
+.signup_text a{
+    
+    font-size: 20px;
+    color:#000000;
+
+}

@@ -2,12 +2,17 @@
 {% load socialaccount %}		
 {% providers_media_js %}
 
+{% load i18n %}
+
 <h1>소셜 로그인 확인</h1>
 
 {% if user.is_authenticated %}
 <p>Welcome, {{ user.username }} !</p>
 <br>
+<a href="/users/profile">profile</a><br>
 <a href = "/sociallogin/logout">logout</a><br>
+<a href="{% url 'organizations:moim-create' %}">Create Moim</a>
+<a href="{% url 'organizations:moim-list' %}">Moim List</a>
 
 {% else %}
 <a href=" {% provider_login_url 'google' %}">구글 로그인</a><br>

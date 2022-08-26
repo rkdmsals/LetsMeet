@@ -294,3 +294,5 @@ sketch
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,django,react
+mainweb/secrets.json
+.venv

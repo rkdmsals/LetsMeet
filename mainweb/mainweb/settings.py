@@ -12,29 +12,60 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import json #보안!!
+import sys
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#시크릿 키는 따로 빼놓기!!
+secret_file = os.path.join(BASE_DIR, 'secrets.json') # secrets.json 파일 위치를 명시
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
+
+def get_secret(setting):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd'
+#SECRET_KEY = 'django-insecure-tpgdiefl*ykfmwrqp)i6*2!chl0aw0!8szb4p+nk5m0^&*mojd'
+SECRET_KEY = get_secret("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = True # 추가
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost', '43.200.104.133']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     #drf
-    'rest_framework',
-    
+    # 'rest_framework',
+    # 'rest_framework.authtoken', #https://krakensystems.co/blog/2020/custom-users-using-django-rest-framework
+    # 'rest_framework_simplejwt.token_blacklist', #로그인할때 블랙리스트 관리 -> 토큰 관련
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +73,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',   ##추가
+
+    #dj-rest-auth
+    #'dj-rest-auth',
+    #'aj-rest-auth.registration',
 
     #allauth
     'allauth',
@@ -58,8 +93,18 @@ INSTALLED_APPS = [
     'users',
     'home',
     'sociallogin',
+    'organizations',
 
+    # organizations
+    # 'organizations',
+
+    # groupadmin 에서 users 지정 가능
+    #'groupadmin_users',
 ]
+#organizations
+# ORGS_SLUGFIELD = 'django_extensions.db.fields.AutoSlugField'
+# INVITATION_BACKEND = 'users.backends.MyInvitationBackend'
+# REGISTRATION_BACKEND = 'users.backends.MyRegistrationBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,34 +139,36 @@ TEMPLATES = [
 ]
 
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+
 WSGI_APPLICATION = 'mainweb.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-
-# MongoDB로 수정 필요!!!
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# 'default': {
-#          'ENGINE': 'djongo',
-#          'NAME': 'db-name',
-#      }
-
-# 'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'your-db-name',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': 'mongodb+srv://<username>:<password>@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority'
-#             }  
-#         }
+# DATABASES = {
+#     #
+#       'default': {
+#           'ENGINE': 'djongo',
+#           "CLIENT": {
+#             "name": 'gayoung',
+#             "host":'mongodb+srv://cyz:cyz2022@cyz.yvzluwk.mongodb.net/?retryWrites=true&w=majority',
+#             "username": 'cyz',
+#             "password": 'cyz2022',
+#             "authMechanism": "SCRAM-SHA-1"
+#           }
+#       }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -150,6 +197,8 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+USE_L10N = True # 추가
 
 USE_TZ = True
 
@@ -180,18 +229,22 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
+SITE_ID = 2
+
+AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL='sociallogin.User'
+
 LOGIN_REDIRECT_URL = '/'	### 오류가 나면 홈으로 돌아와라
 LOGOUT_REDIRECT_URL = '/'
 
 
 # Additional configuration settings
-SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
+# SOCIALACCOUNT_QUERY_EMAIL = True
+# ACCOUNT_LOGOUT_ON_GET= True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_REQUIRED = True
 
-SOCIALACCOUNT_PROVIDERS = {
+SOCIALACCOUNT_PROVIDERS= {
     'google': {
         'SCOPE': [
             'profile',
@@ -205,3 +258,16 @@ SOCIALACCOUNT_PROVIDERS = {
 
 #remove handshake page 
 SOCIALACCOUNT_LOGIN_ON_GET=True
+
+
+#JWT 환경 세팅
+# REST_USE_JWT = True
+
+# from datetime import timedelta
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+#     'ROTATE_REFRESH_TOKENS': False,
+#     'BLACKLIST_AFTER_ROTATION': True,
+# }
