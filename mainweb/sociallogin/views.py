@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 
 def sociallogin(request):
@@ -14,3 +14,35 @@ def register_view(request):
 
 def register_finish_view(request):
     return render(request, 'sociallogin/register_complete.html')
+
+
+# from slack import slack_notify
+from django.views.decorators.http import require_GET, require_POST
+
+# @require_POST
+# def register_save(request):
+#     # isbn = request.POST['isbn']
+#     # message, book = register_book(isbn)
+#     # messages.info(request, message)
+#     # if book:
+#     #     # slack_message = "*[신규회원]* {}".format(book.title)
+#     #     slack_message = "*[신규회원]*"
+#     #     slack_notify(slack_message)
+    
+#     slack_message = "*[신규회원]*"
+#     slack_notify(slack_message)
+#     return redirect('sociallogin:register_finish')
+
+
+
+
+from .slack import post_message
+
+@require_GET
+def send_slack(request):
+    text = "new test"
+    myToken = "xoxb-4018156897472-4018178014048-Sa13o0yf7f6OpA6rK6zVFvCy"
+
+    post_message(myToken, "#admin", text)
+    return redirect('sociallogin:register_finish')
+

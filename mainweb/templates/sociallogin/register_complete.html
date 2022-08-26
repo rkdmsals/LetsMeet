@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <header>
     
@@ -9,14 +10,24 @@
     </style>
 </header>
 
+<head>
+    <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+  </head>
+
 <body >
     <div class="box">
         <img src="../../static/image/LetsMeet_Logo.png">
         <div class="textbox1">회원가입을 축하합니다!</div>
         <div class="textbox2">반갑습니다!<br/>로그인 후 우지만을 통해 약속 시간을 쉽게 정해보세요.</div>
-        <?PHP
-        echo shell_exec("python slack.py");
-        ?>
+        <!-- <py-script>
+            slack.py
+        </py-script> -->
+        <!-- <script type="text/python">
+            from slack import post_message
+            myToken = "xoxb-4018156897472-4018178014048-Sa13o0yf7f6OpA6rK6zVFvCy"
+
+            post_message(myToken, "#admin", "test.")
+        </script> -->
         <button class="btn1">로그인</button>
     </div>
 </body>
