@@ -130,6 +130,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     #
+#       'default': {
+#           'ENGINE': 'djongo',
+#           "CLIENT": {
+#             "name": 'gayoung',
+#             "host":'mongodb+srv://cyz:cyz2022@cyz.yvzluwk.mongodb.net/?retryWrites=true&w=majority',
+#             "username": 'cyz',
+#             "password": 'cyz2022',
+#             "authMechanism": "SCRAM-SHA-1"
+#           }
+#       }
+# }
 
 # 'default': {
 #          'ENGINE': 'djongo',
@@ -202,7 +215,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
+SITE_ID = 2
 
 #
 #AUTH_USER_MODEL='sociallogin.User'
