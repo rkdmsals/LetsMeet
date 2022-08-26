@@ -1,7 +1,7 @@
 {% load static %}
 
 {% if user.is_authenticated %}
-<p>Welcome, {{ user.username }} !</p>
+<p>Welcome, {{ user.name }} !</p>
 <br>
 <a href = "/sociallogin/logout">logout</a><br>
 
