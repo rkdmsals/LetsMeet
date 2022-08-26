@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <header>
     <meta charset="UTF-8">
-    <link href="../../static/css/loginHome.css" rel="stylesheet" />
-    <link href="../../static/css/btn.css" rel="stylesheet" />
+    <link href="/../home/loginHome.css" rel="stylesheet" />
+    <link href="/../share/btn.css" rel="stylesheet" />
     <style>
         .loginBox form {
             width: auto;
@@ -12,7 +12,7 @@
 
 <body >
     <div class="box">
-        <img src="../../static/image/LetsMeet_Logo.png">
+        <img src="/../../static/image/LetsMeet_Logo.png">
         <div class="b_textBox">
             <div class="b_text1">회원가입</div>
         </div>
@@ -34,7 +34,8 @@
                 <input type="text" name="pw" class="input" />
             </form><br />
             <br><br>
-            <button class="btn1"><a href="../sociallogin/register_complete.html" >회원가입</a></button>
+            <button class="btn1"><a href="{% url 'sociallogin:register_new' %}" >회원가입</a></button>
+
         </div>
     </div>
 </body>
