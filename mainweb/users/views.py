@@ -16,7 +16,7 @@ def redirect_to_user_profile(request):
 @login_required
 def profile_view(request):
     if request.method == 'GET':
-        return render(request, 'users/profile.html')
+        return render(request, 'users/profile_view.html')
 
 
 @login_required
@@ -27,7 +27,7 @@ def profile_update_view(request):
         if user_change_form.is_valid():
             user_change_form.save()
             messages.success(request, '회원정보가 수정되었습니다.')
-            return render(request, 'users/profile.html')
+            return render(request, 'users/profile_view.html')
     else:
         user_change_form = CustomUserChangeForm(instance = request.user)
 

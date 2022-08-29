@@ -39,7 +39,7 @@ class MoimDetailView(generic.DetailView):
 
 class MoimCreateView(generic.CreateView):
     model = Moim
-    fields = ('name', 'detail', 'join_users', 'start_date', 'end_date')
+    fields = ('moim_name', 'detail', 'join_users', 'start_date', 'end_date')
 
     success_url = "/organizations/list"
     # Once the creation success, the user is redirected to success_url. 
