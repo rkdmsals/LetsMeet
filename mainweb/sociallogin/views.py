@@ -41,7 +41,7 @@ from .slack import post_message
 @require_GET
 def send_slack(request):
     text = "현장 미션 완료!! ^^"
-    myToken = "xoxb-4018156897472-4018178014048-AqC17N7a1Zf8deS77MZs5tEl"
+    myToken = "xoxb-4018156897472-4018178014048-twjCwfOrpgMW7LrIOhQSR4cG"
 
     post_message(myToken, "#admin", text)
     return redirect('sociallogin:register_finish')
